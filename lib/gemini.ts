@@ -1,5 +1,3 @@
-'use server';
-
 import { GoogleGenAI, GenerateContentResponse, Chat } from "@google/genai";
 import { GEMINI_SYSTEM_INSTRUCTION } from './constants';
 
@@ -7,8 +5,12 @@ let aiInstance: GoogleGenAI | null = null;
 
 const getAI = (): GoogleGenAI => {
   if (!aiInstance) {
-    // The API key must be obtained exclusively from process.env.API_KEY
-    aiInstance = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+    // For client-side usage, the API key must be exposed via NEXT_PUBLIC_ prefix
+    const apiKey = process.env.NEXT_PUBLIC_GEMINI_API_KEY;
+    if (!apiKey) {
+      throw new Error('NEXT_PUBLIC_GEMINI_API_KEY is not defined');
+    }
+    aiInstance = new GoogleGenAI({ apiKey });
   }
   return aiInstance;
 };
