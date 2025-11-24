@@ -1,10 +1,11 @@
 'use client';
-import { HERO_SUBTITLES, PROFESSIONAL_SUMMARY } from '@/lib/constants';
+import { HERO_SUBTITLES, PROFESSIONAL_SUMMARY, PREFIX } from '@/lib/constants';
 import Typewriter from './features/Typewriter';
 import {
     Sword, Zap, MapPin, Calendar
 } from 'lucide-react';
 import { PERSONAL_INFO } from '@/lib/personal_data';
+
 
 export default function Home({ scrollToSection }: { scrollToSection: (sectionId: string) => void }) {
     return (
@@ -80,7 +81,7 @@ export default function Home({ scrollToSection }: { scrollToSection: (sectionId:
                                     <div className="relative w-full h-full bg-slate-100 dark:bg-slate-800 border-2 lg:border-4 border-slate-900 dark:border-white overflow-hidden shadow-2xl z-10">
                                         {/* User photo */}
                                         <img
-                                            src="/avatar.jpg"
+                                            src={`${PREFIX}/avatar.jpg`}
                                             alt="Yukuan Portrait"
                                             className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-110"
                                         />
