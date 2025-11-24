@@ -7,6 +7,7 @@ const nextConfig: NextConfig = {
   },
   // Uncomment the basePath below if your repo name is NOT 'portfolio'
   basePath: '/portfolio',
+  assetPrefix: "/portfolio/",
 };
 
 export default nextConfig;
