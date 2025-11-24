@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import { SKILLS, STRENGTHS, EXPERIENCES, TITLES } from '@/lib/constants';
+import { SKILLS, STRENGTHS, EXPERIENCES, TITLES, PREFIX} from '@/lib/constants';
 import { PERSONAL_INFO } from '@/lib/personal_data';
 import {
     Cpu, Briefcase, Award, Zap,
@@ -13,7 +13,7 @@ const SkillIcon = ({ iconKey, size = 24, className = "" }: { iconKey: string, si
     const darkIcons = ['nextdotjs', 'vercel', 'github', 'express', 'flask', 'objectivec', 'notion', 'unity', 'react', 'nextjs', 'aws', 'apple'];
     const isDarkIcon = darkIcons.includes(iconKey);
 
-    const url = `/${iconKey}.svg`;
+    const url = `${PREFIX}/${iconKey}.svg`;
 
     return (
         <img
@@ -75,7 +75,7 @@ export default function Skills() {
                                 <div className="bg-slate-50 dark:bg-slate-900 p-6 border-2 border-slate-200 dark:border-slate-700 flex flex-col items-center text-center">
                                     <div className="w-32 h-32 bg-gradient-to-br from-cyan-400 to-pink-500 rounded-full mb-4 p-1 shadow-[0_0_20px_rgba(34,211,238,0.3)]">
                                         <div className="w-full h-full bg-slate-100 dark:bg-slate-800 rounded-full flex items-center justify-center overflow-hidden border-2 border-white">
-                                            <img src="/avatar.jpg" alt="Avatar" className="w-full h-full object-cover" />
+                                            <img src={`${PREFIX}/avatar.jpg`} alt="Avatar" className="w-full h-full object-cover" />
                                         </div>
                                     </div>
 
@@ -193,7 +193,7 @@ export default function Skills() {
                                             {filteredSkills.map((skill) => {
                                                 const rank = getRank(skill.level);
                                                 return (
-                                                    <div key={skill.name} className="group relative bg-white dark:bg-slate-900 border-2 border-slate-300 dark:border-slate-700 p-3 hover:border-cyan-400 transition-colors flex items-center gap-4 overflow-hidden shadow-sm">
+                                                    <div key={skill.name} className="group relative bg-white dark:bg-slate-900 border-2 border-slate-300 dark:border-slate-700 p-3 hover:border-cyan-400 transition-colors flex items-center gap-4 h-full shadow-sm">
                                                         {/* Hover Effect */}
                                                         <div className="absolute inset-0 bg-cyan-400/5 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300"></div>
 
