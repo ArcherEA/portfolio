@@ -16,15 +16,25 @@ export const ChatAssistant: React.FC = () => {
     }
   ]);
   const [isLoading, setIsLoading] = useState(false);
-  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const chatContainerRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    if (chatContainerRef.current) {
+      const { scrollHeight, clientHeight } = chatContainerRef.current;
+      chatContainerRef.current.scrollTo({
+        top: scrollHeight - clientHeight,
+        behavior: 'smooth'
+      });
+    }
   };
 
-  // useEffect(() => {
-  //   scrollToBottom();
-  // }, [messages]);
+  useEffect(() => {
+    // Only auto-scroll if there are new messages (length > 1 implies user interaction or history)
+    // This prevents any potential initial scroll weirdness, though scrollTop shouldn't cause page jumps.
+    if (messages.length > 1) {
+      scrollToBottom();
+    }
+  }, [messages]);
 
   const handleSend = async () => {
     if (!input.trim() || isLoading) return;
@@ -82,7 +92,10 @@ export const ChatAssistant: React.FC = () => {
       </div>
 
       {/* Chat Area */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-6 bg-slate-50 dark:bg-slate-800/50 scroll-smooth">
+      <div
+        ref={chatContainerRef}
+        className="flex-1 overflow-y-auto p-4 space-y-6 bg-slate-50 dark:bg-slate-800/50 scroll-smooth"
+      >
         {messages.map((msg) => (
           <div
             key={msg.id}
@@ -131,7 +144,6 @@ export const ChatAssistant: React.FC = () => {
             </div>
           </div>
         )}
-        <div ref={messagesEndRef} />
       </div>
 
       {/* Input Area */}
