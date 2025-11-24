@@ -1,6 +1,7 @@
 
 import type { Metadata } from 'next';
 import './globals.css';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 import { Roboto_Condensed, Orbitron, Bangers } from "next/font/google";
 import {  PERSONAL_INFO } from '@/lib/personal_data';
@@ -69,6 +70,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${robotoCondensed.variable} ${orbitron.variable} ${bangers.variable} font-sans antialiased`}>
         {children}
+        <SpeedInsights />
       </body>
     </html>
   );
