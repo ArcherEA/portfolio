@@ -47,7 +47,7 @@ export const SKILLS: Skill[] = SKILLS_LIST;
 
 export const PROJECTS: Project[] = PROJECTS_LIST;
 
-export const PREFIX: String = process.env.NODE_ENV === "production" ? "/portfolio" : "";
+export const PREFIX: String = process.env.NODE_ENV === "production" ? "" : "";
 
 export const BLOG_POSTS: BlogPost[] = [
   {

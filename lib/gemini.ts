@@ -1,3 +1,5 @@
+'use server';
+
 import { GoogleGenAI, GenerateContentResponse, Chat } from "@google/genai";
 import { GEMINI_SYSTEM_INSTRUCTION } from './constants';
 
@@ -5,10 +7,11 @@ let aiInstance: GoogleGenAI | null = null;
 
 const getAI = (): GoogleGenAI => {
   if (!aiInstance) {
-    // For client-side usage, the API key must be exposed via NEXT_PUBLIC_ prefix
-    const apiKey = process.env.NEXT_PUBLIC_GEMINI_API_KEY;
+    // For server-side usage (Vercel), we use the standard environment variable
+    // We also check NEXT_PUBLIC_GEMINI_API_KEY as a fallback if the user set that instead
+    const apiKey = process.env.GEMINI_API_KEY || process.env.NEXT_PUBLIC_GEMINI_API_KEY;
     if (!apiKey) {
-      throw new Error('NEXT_PUBLIC_GEMINI_API_KEY is not defined');
+      throw new Error('GEMINI_API_KEY is not defined');
     }
     aiInstance = new GoogleGenAI({ apiKey });
   }
