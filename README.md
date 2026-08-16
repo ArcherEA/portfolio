@@ -1,36 +1,77 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Yukuan Hao — Anime-Themed Developer Portfolio
+
+A high-energy, anime/RPG-styled personal portfolio built with **Next.js 16** and **React 19**. Features RPG-style stat panels, manga-panel layouts, a scroll-snap section slider, light/dark themes, and **Aiko** — an AI character assistant powered by Google Gemini.
+
+🔗 **Live:** https://portfolio-web-gamma.vercel.app
+
+## Tech Stack
+
+- **Framework:** Next.js 16 (App Router, Server Actions)
+- **UI:** React 19, Tailwind CSS 4, lucide-react icons
+- **AI:** Google Gemini (`@google/genai`, `gemini-2.5-flash`) via a Server Action
+- **Analytics:** Vercel Speed Insights
+- **Deploy:** Vercel
 
 ## Getting Started
 
-First, run the development server:
+Install dependencies and run the dev server:
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Environment variables
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The AI assistant needs a Gemini API key. Create a `.env.local` file:
 
-## Learn More
+```bash
+GEMINI_API_KEY=your_google_gemini_api_key
+```
 
-To learn more about Next.js, take a look at the following resources:
+Get a key from [Google AI Studio](https://aistudio.google.com/app/apikey). The chat still degrades gracefully (shows an error message) if the key is missing.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Project Structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+app/
+  layout.tsx            Root layout, fonts, SEO metadata
+  page.tsx              Entry — renders the Portfolio app
+  opengraph-image.tsx   Generated 1200x630 social card
+  sitemap.ts / robots.ts
+  globals.css
+components/
+  Portfolio.tsx         Main shell: nav, theme, scroll-spy, section slider
+  Home.tsx, Skills.tsx, Projects.tsx, Contact.tsx
+  features/ChatAssistant.tsx   Aiko chat UI
+  features/Typewriter.tsx
+  ui/MangaCard.tsx
+lib/
+  personal_data.ts      ← EDIT THIS: your info, experience, projects, skills
+  constants.ts          Derived content + Gemini system prompt
+  gemini.ts             Gemini Server Action (with rate limiting)
+  types.ts
+```
 
-## Deploy on Vercel
+## Customizing
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Almost all content lives in [`lib/personal_data.ts`](lib/personal_data.ts) — name, contact, work experience, projects, and skills (rated on a **1–5** scale). Update that file and the site, plus Aiko's knowledge, update automatically.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Available Scripts
+
+| Command | Description |
+| --- | --- |
+| `npm run dev` | Start the dev server |
+| `npm run build` | Production build |
+| `npm run start` | Serve the production build |
+| `npm run lint` | Run ESLint |
+
+## Deploy
+
+Deploy on [Vercel](https://vercel.com/new). Set the `GEMINI_API_KEY` environment variable in the project settings. Server Actions and image optimization work out of the box.
+
+## License
+
+See [LICENSE](LICENSE).

@@ -154,6 +154,7 @@ export const ChatAssistant: React.FC = () => {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && handleSend()}
+            maxLength={1000}
             placeholder="Send a message to Aiko..."
             className="flex-1 bg-white dark:bg-slate-900 text-slate-900 dark:text-white border-2 border-purple-400 p-3 rounded-lg focus:outline-none focus:border-pink-500 focus:ring-2 focus:ring-pink-500/20 font-mono placeholder-slate-500 transition-all duration-300 shadow-inner"
           />

@@ -4,7 +4,7 @@ import { NAV_LINKS, SKILLS } from '@/lib/constants';
 import LoadingScreen from '@/components/LoadingScreen';
 import {
   ArrowUp, Sun, Moon,
-  Menu, X, Wifi
+  Menu, X
 } from 'lucide-react';
 import Home from './Home';
 import Skills from './Skills';
@@ -66,32 +66,7 @@ export default function App() {
       localStorage.setItem('theme', 'light');
     }
   }, [theme]);
- // Use layout effect to check storage before paint to prevent loading flash
-  useLayoutEffect(() => {
-    const savedTheme = localStorage.getItem('theme') as 'dark' | 'light' | null;
-    if (savedTheme) {
-      setTheme(savedTheme);
-    } else {
-      setTheme('dark');
-    }
 
-    // Check session storage to see if intro has already been shown in this session
-    const introShown = sessionStorage.getItem('intro_shown');
-    if (introShown) {
-      setIsLoading(false);
-    }
-  }, []);
-
-  useEffect(() => {
-    const html = document.documentElement;
-    if (theme === 'dark') {
-      html.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
-    } else {
-      html.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
-    }
-  }, [theme]);
     // Restore scroll position logic
   useEffect(() => {
     if (!isLoading && mainRef.current) {

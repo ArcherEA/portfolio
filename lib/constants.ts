@@ -243,7 +243,7 @@ CURRENT STATUS / SUMMARY:
 ${PROFESSIONAL_SUMMARY}
 
 TOP SKILLS (ARSENAL):
-${SKILLS.filter(s => s.level >= 85).map(s => `- ${s.name} (Lv.${s.level})`).join('\n')}
+${SKILLS.filter(s => s.level >= 4).map(s => `- ${s.name} (Lv.${s.level})`).join('\n')}
 
 QUEST HISTORY (EXPERIENCE):
 ${EXPERIENCES.map(e => `- ${e.role} @ ${e.company} (${e.period}): ${e.description} [Achievements: ${e.achievements.join('; ')}]`).join('\n')}

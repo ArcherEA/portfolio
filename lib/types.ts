@@ -17,7 +17,7 @@ export interface Stat {
 
 export interface Skill {
   name: string;
-  level: number; // 0-100
+  level: number; // 1-5 (rendered as rank S/A/B/C and level*20% bars)
   category: 'frontend' | 'backend' | 'database' | 'devops' | 'mobile' | 'tools';
   iconKey: string;
 }

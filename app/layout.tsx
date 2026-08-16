@@ -27,6 +27,7 @@ const bangers = Bangers({
 
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://portfolio-web-gamma.vercel.app'),
   title: 'Yukuan Hao | Full Stack Developer & Creative Technologist',
   description: 'Portfolio of ' + PERSONAL_INFO.name + ', a Full Stack Developer specializing in React, Next.js, and modern web technologies. Explore my projects, skills, and creative works.',
   keywords: ['Full Stack Developer', 'React', 'Next.js', 'Portfolio', PERSONAL_INFO.name, 'Web Development', 'Creative Technologist', 'Frontend', 'Backend'],
@@ -40,16 +41,9 @@ export const metadata: Metadata = {
   openGraph: {
     title: PERSONAL_INFO.name + ' | Full Stack Developer',
     description: 'Portfolio of ' + PERSONAL_INFO.name + ', a Full Stack Developer specializing in React, Next.js, and modern web technologies.',
-    url: 'https://portfolio-web-gamma.vercel.app', // Assuming this or generic URL, can be updated later if known
+    url: 'https://portfolio-web-gamma.vercel.app',
     siteName: PERSONAL_INFO.name + ' Portfolio',
-    images: [
-      {
-        url: '/logo.svg',
-        width: 800,
-        height: 800,
-        alt: PERSONAL_INFO.name + ' Logo',
-      },
-    ],
+    // og:image is provided by app/opengraph-image.tsx (generated 1200x630 card)
     locale: 'en_US',
     type: 'website',
   },
@@ -57,7 +51,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: PERSONAL_INFO.name + ' | Full Stack Developer',
     description: 'Portfolio of ' + PERSONAL_INFO.name + ', a Full Stack Developer specializing in React, Next.js, and modern web technologies.',
-    images: ['/logo.svg'],
+    // twitter:image is provided by app/opengraph-image.tsx
   },
 };
 
