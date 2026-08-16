@@ -39,9 +39,12 @@ Get a key from [Google AI Studio](https://aistudio.google.com/app/apikey). The c
 app/
   layout.tsx            Root layout, fonts, SEO metadata
   page.tsx              Entry — renders the Portfolio app
+  blog/                 Blog index (/blog) and post pages (/blog/[slug])
   opengraph-image.tsx   Generated 1200x630 social card
   sitemap.ts / robots.ts
   globals.css
+content/
+  blog/*.md             ← Blog posts (Markdown + frontmatter)
 components/
   Portfolio.tsx         Main shell: nav, theme, scroll-spy, section slider
   Home.tsx, Skills.tsx, Projects.tsx, Contact.tsx
@@ -58,6 +61,25 @@ lib/
 ## Customizing
 
 Almost all content lives in [`lib/personal_data.ts`](lib/personal_data.ts) — name, contact, work experience, projects, and skills (rated on a **1–5** scale). Update that file and the site, plus Aiko's knowledge, update automatically.
+
+## Writing blog posts
+
+The blog is file-based — no CMS. To publish a post, drop a Markdown file in `content/blog/`:
+
+```markdown
+---
+title: How I Debugged a Nasty Race Condition
+date: 2026-08-20
+excerpt: A short one-line summary shown on the blog index and social cards.
+category: dev
+cover: /some-image.jpg   # optional
+---
+
+Write your post in **Markdown**. GitHub-flavored Markdown is supported
+(tables, code fences, task lists, etc.). Read time is calculated automatically.
+```
+
+The file name becomes the URL slug (`my-post.md` → `/blog/my-post`). Posts are sorted newest-first by `date`, appear at `/blog`, are added to the sitemap, and Aiko (the AI assistant) automatically learns their titles and excerpts.
 
 ## Available Scripts
 

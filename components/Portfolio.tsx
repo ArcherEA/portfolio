@@ -1,5 +1,6 @@
 'use client';
 import React, { useState, useEffect, useRef, useLayoutEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import { NAV_LINKS, SKILLS } from '@/lib/constants';
 import LoadingScreen from '@/components/LoadingScreen';
 import {
@@ -9,7 +10,6 @@ import {
 import Home from './Home';
 import Skills from './Skills';
 import Projects from './Projects';
-// import Blogs from './Blogs';
 import Contact from './Contact';
 
 // --- Helper Components ---
@@ -33,6 +33,7 @@ const AmbientBackground = () => {
 // --- Main App Component ---
 
 export default function App() {
+  const router = useRouter();
   const mainRef = useRef<HTMLDivElement>(null);
   const [activeSection, setActiveSection] = useState('home');
   const [showScrollTop, setShowScrollTop] = useState(false);
@@ -144,6 +145,16 @@ export default function App() {
     setMobileMenuOpen(false); // Close mobile menu if open
   };
 
+  // Nav items may be in-page anchors (#id) or real routes (/blog).
+  const handleNavClick = (href: string) => {
+    if (href.startsWith('#')) {
+      scrollToSection(href.substring(1));
+    } else {
+      setMobileMenuOpen(false);
+      router.push(href);
+    }
+  };
+
   return (
     <div className="h-full w-full bg-slate-50 dark:bg-[#1a1a2e] text-slate-900 dark:text-white selection:bg-pink-500 selection:text-white relative overflow-hidden transition-colors duration-300">
       {isLoading && <LoadingScreen onComplete={() => {
@@ -194,11 +205,11 @@ export default function App() {
           <div className="flex gap-1">
             {NAV_LINKS.map((link) => {
               const linkId = link.href.substring(1);
-              const isActive = activeSection === linkId;
+              const isActive = link.href.startsWith('#') && activeSection === linkId;
               return (
                 <button
                   key={link.name}
-                  onClick={() => scrollToSection(linkId)}
+                  onClick={() => handleNavClick(link.href)}
                   className={`
                          relative px-4 py-2 rounded-full text-sm font-bold transition-all duration-300 font-tech tracking-wider whitespace-nowrap
                          ${isActive ? 'text-slate-900' : 'text-slate-500 hover:text-slate-900 dark:text-gray-400 dark:hover:text-white'}
@@ -251,7 +262,7 @@ export default function App() {
               {NAV_LINKS.map((link, index) => (
                 <button
                   key={link.name}
-                  onClick={() => scrollToSection(link.href.substring(1))}
+                  onClick={() => handleNavClick(link.href)}
                   className="font-display text-4xl hover:text-pink-600 dark:hover:text-pink-500 hover:scale-110 transition-all uppercase tracking-widest transform skew-x-[-10deg] hover:shadow-[4px_4px_0px_rgba(0,0,0,0.1)] dark:hover:shadow-[4px_4px_0px_black]"
                   style={{ animationDelay: `${index * 100}ms` }}
                 >

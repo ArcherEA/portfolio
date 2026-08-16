@@ -3,6 +3,19 @@
 import { GoogleGenAI, GenerateContentResponse, Chat } from "@google/genai";
 import { headers } from "next/headers";
 import { GEMINI_SYSTEM_INSTRUCTION } from './constants';
+import { getAllPosts } from './blog';
+
+// Fill the {{BLOG_SECTION}} placeholder with real blog posts read from disk,
+// so Aiko can talk about them. Done server-side because it touches the filesystem.
+const buildSystemInstruction = (): string => {
+  const posts = getAllPosts();
+  const blogSection = posts.length
+    ? `\nARCHIVED MEMORIES (BLOGS):\n${posts
+        .map((p) => `- ${p.title}: ${p.excerpt}`)
+        .join('\n')}\n`
+    : '';
+  return GEMINI_SYSTEM_INSTRUCTION.replace('{{BLOG_SECTION}}', blogSection);
+};
 
 let aiInstance: GoogleGenAI | null = null;
 
@@ -74,7 +87,7 @@ export const sendMessageToGemini = async (
     const chat: Chat = ai.chats.create({
       model: modelId,
       config: {
-        systemInstruction: GEMINI_SYSTEM_INSTRUCTION,
+        systemInstruction: buildSystemInstruction(),
         temperature: 0.9,
       },
       history: trimmedHistory.map(h => ({
