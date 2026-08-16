@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useRef, useLayoutEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { NAV_LINKS, SKILLS } from '@/lib/constants';
+import type { BlogPostMeta } from '@/lib/types';
 import LoadingScreen from '@/components/LoadingScreen';
 import {
   ArrowUp, Sun, Moon,
@@ -10,6 +11,7 @@ import {
 import Home from './Home';
 import Skills from './Skills';
 import Projects from './Projects';
+import Blog from './Blog';
 import Contact from './Contact';
 
 // --- Helper Components ---
@@ -32,7 +34,7 @@ const AmbientBackground = () => {
 
 // --- Main App Component ---
 
-export default function App() {
+export default function App({ posts = [] }: { posts?: BlogPostMeta[] }) {
   const router = useRouter();
   const mainRef = useRef<HTMLDivElement>(null);
   const [activeSection, setActiveSection] = useState('home');
@@ -294,7 +296,7 @@ export default function App() {
         <Projects />
 
         {/* Blog Section Slide */}
-        {/* <Blogs/> */}
+        <Blog posts={posts} />
 
         {/* Contact / AI Chat Section Slide - FINAL REFINEMENT */}
         <Contact />

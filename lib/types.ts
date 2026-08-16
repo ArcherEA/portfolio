@@ -38,6 +38,17 @@ export interface Education {
   degree: string;
 }
 
+// Blog post metadata (no body) — safe to pass into client components.
+export interface BlogPostMeta {
+  slug: string;
+  title: string;
+  date: string;
+  excerpt: string;
+  category: string;
+  readTime: string;
+  cover?: string;
+}
+
 export interface ChatMessage {
   id: string;
   role: 'user' | 'model';

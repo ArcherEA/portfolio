@@ -3,18 +3,12 @@ import 'server-only';
 import fs from 'node:fs';
 import path from 'node:path';
 import matter from 'gray-matter';
+import type { BlogPostMeta } from './types';
 
 const BLOG_DIR = path.join(process.cwd(), 'content', 'blog');
 
-export interface BlogPost {
-  slug: string;
-  title: string;
-  date: string;        // ISO string, e.g. "2026-08-16"
-  excerpt: string;
-  category: string;
-  readTime: string;    // auto-computed, e.g. "5 MIN READ"
-  cover?: string;      // optional cover image URL/path
-  content: string;     // raw markdown body
+export interface BlogPost extends BlogPostMeta {
+  content: string; // raw markdown body
 }
 
 type Frontmatter = {
