@@ -17,7 +17,7 @@ export interface Stat {
 
 export interface Skill {
   name: string;
-  level: number; // 0-100
+  level: number; // 1-5 (rendered as rank S/A/B/C and level*20% bars)
   category: 'frontend' | 'backend' | 'database' | 'devops' | 'mobile' | 'tools';
   iconKey: string;
 }
@@ -38,15 +38,15 @@ export interface Education {
   degree: string;
 }
 
-export interface BlogPost {
-  id: string;
+// Blog post metadata (no body) — safe to pass into client components.
+export interface BlogPostMeta {
+  slug: string;
   title: string;
-  excerpt: string;
-  content: string;
   date: string;
+  excerpt: string;
   category: string;
-  imageUrl: string;
   readTime: string;
+  cover?: string;
 }
 
 export interface ChatMessage {
