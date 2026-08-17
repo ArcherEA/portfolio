@@ -78,7 +78,7 @@ export const sendMessageToGemini = async (
     }
 
     const ai = getAI();
-    const modelId = 'gemini-2.5-flash';
+    const modelId = 'gemini-3.6-flash';
 
     // Keep only the most recent turns to cap token usage.
     const trimmedHistory = history.slice(-MAX_HISTORY_MESSAGES);
