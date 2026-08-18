@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720" role="img" aria-label="Classified project">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#14142a"/>
+      <stop offset="1" stop-color="#241535"/>
+    </linearGradient>
+    <linearGradient id="bar" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#ec4899"/>
+      <stop offset="1" stop-color="#22d3ee"/>
+    </linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#ffffff" stroke-opacity="0.04" stroke-width="1"/>
+    </pattern>
+    <pattern id="scan" width="4" height="4" patternUnits="userSpaceOnUse">
+      <rect width="4" height="1" y="3" fill="#000000" opacity="0.25"/>
+    </pattern>
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="7" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- background -->
+  <rect width="1280" height="720" fill="url(#bg)"/>
+  <rect width="1280" height="720" fill="url(#grid)"/>
+  <rect width="1280" height="720" fill="url(#scan)"/>
+
+  <!-- top accent bar -->
+  <rect width="1280" height="8" fill="url(#bar)"/>
+
+  <!-- corner tech labels -->
+  <text x="48" y="70" fill="#ec4899" font-family="'Courier New', monospace" font-size="24" font-weight="700" letter-spacing="2">MISSION_REDACTED</text>
+  <text x="1232" y="682" text-anchor="end" fill="#22d3ee" font-family="'Courier New', monospace" font-size="22" letter-spacing="2" opacity="0.8">// ENCRYPTED</text>
+
+  <!-- lock -->
+  <g filter="url(#glow)" stroke="#22d3ee" stroke-width="14" fill="none">
+    <path d="M600 300 v-24 a40 40 0 0 1 80 0 v24"/>
+  </g>
+  <rect x="592" y="300" width="96" height="86" rx="12" fill="#22d3ee"/>
+  <circle cx="640" cy="335" r="12" fill="#14142a"/>
+  <rect x="634" y="335" width="12" height="26" rx="4" fill="#14142a"/>
+
+  <!-- headline -->
+  <text x="640" y="500" text-anchor="middle" fill="#f1f5f9" font-family="'Arial Black', Impact, sans-serif" font-size="96" font-weight="900" letter-spacing="6">CLASSIFIED</text>
+  <text x="640" y="548" text-anchor="middle" fill="#94a3b8" font-family="'Courier New', monospace" font-size="26" letter-spacing="3">// NDA PROTECTED &#183; ACCESS RESTRICTED</text>
+</svg>

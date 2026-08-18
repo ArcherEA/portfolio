@@ -1,6 +1,7 @@
 'use client';
+import Link from 'next/link';
 import { PROJECTS } from '@/lib/constants';
-import { Globe, Code } from 'lucide-react';
+import { Globe, Code, FileText } from 'lucide-react';
 
 export default function Projects() {
     return (
@@ -34,29 +35,15 @@ export default function Projects() {
                                     <img
                                         src={project.imageUrl}
                                         alt={project.title}
-                                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-90 group-hover:opacity-100"
+                                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                                     />
 
-                                    {/* Scanline Effect */}
-                                    <div className="absolute inset-0 bg-[linear-gradient(transparent_50%,rgba(0,0,0,0.5)_50%)] bg-[size:100%_4px] pointer-events-none opacity-30"></div>
+                                    {/* Scanline Effect (subtle, keeps the screenshot readable) */}
+                                    <div className="absolute inset-0 bg-[linear-gradient(transparent_50%,rgba(0,0,0,0.5)_50%)] bg-[size:100%_4px] pointer-events-none opacity-10"></div>
 
                                     {/* Status Badge */}
                                     <div className="absolute top-2 left-2 bg-black/70 backdrop-blur-sm text-white text-[10px] font-mono px-2 py-0.5 border border-white/20">
                                         MISSION_0{index + 1}
-                                    </div>
-
-                                    {/* Hover Overlay Actions */}
-                                    <div className="absolute inset-0 bg-slate-900/80 backdrop-blur-sm opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
-                                        {project.demoUrl && (
-                                            <a href={project.demoUrl} target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-cyan-500 text-white hover:bg-cyan-400 hover:scale-110 transition-all shadow-[0_0_15px_rgba(6,182,212,0.6)]">
-                                                <Globe size={24} />
-                                            </a>
-                                        )}
-                                        {project.githubUrl && (
-                                            <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-pink-500 text-white hover:bg-pink-400 hover:scale-110 transition-all shadow-[0_0_15px_rgba(236,72,153,0.6)]">
-                                                <Code size={24} />
-                                            </a>
-                                        )}
                                     </div>
                                 </div>
 
@@ -82,10 +69,30 @@ export default function Projects() {
                                         {project.description}
                                     </p>
 
-                                    {/* Footer Info */}
-                                    <div className="pt-3 border-t border-slate-200 dark:border-slate-800 flex justify-between items-center text-[10px] font-mono text-slate-400 uppercase">
-                                        <span>Secured Data</span>
-                                        <span className="group-hover:text-pink-500 transition-colors">Access Granted</span>
+                                    {/* Footer Actions */}
+                                    <div className="pt-3 border-t border-slate-200 dark:border-slate-800 flex items-center gap-2">
+                                        {project.blogSlug ? (
+                                            <Link
+                                                href={`/blog/${project.blogSlug}`}
+                                                className="inline-flex items-center gap-1.5 bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-3 py-1.5 text-xs font-bold font-tech tracking-wider hover:bg-pink-600 dark:hover:bg-pink-500 dark:hover:text-white transition-colors"
+                                            >
+                                                <FileText size={14} /> DEV LOG
+                                            </Link>
+                                        ) : (
+                                            <span className="text-[10px] font-mono text-slate-400 uppercase tracking-wider">// Confidential</span>
+                                        )}
+                                        <div className="flex items-center gap-2 ml-auto">
+                                            {project.demoUrl && (
+                                                <a href={project.demoUrl} target="_blank" rel="noopener noreferrer" aria-label="Live demo" className="p-2 rounded-full bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 hover:bg-cyan-500 hover:text-white transition-all">
+                                                    <Globe size={18} />
+                                                </a>
+                                            )}
+                                            {project.githubUrl && (
+                                                <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" aria-label="Source code" className="p-2 rounded-full bg-pink-500/10 text-pink-600 dark:text-pink-400 hover:bg-pink-500 hover:text-white transition-all">
+                                                    <Code size={18} />
+                                                </a>
+                                            )}
+                                        </div>
                                     </div>
                                 </div>
 
