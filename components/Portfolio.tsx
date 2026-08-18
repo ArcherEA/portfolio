@@ -164,9 +164,9 @@ export default function App({ posts = [] }: { posts?: BlogPostMeta[] }) {
         sessionStorage.setItem('intro_shown', 'true');
       }} />}
 
-      {!isLoading && (
-        <>
-          <AmbientBackground />
+      {/* Content is always rendered (so it's in the server HTML for SEO);
+          the LoadingScreen above sits on top as a fixed overlay during the intro. */}
+      <AmbientBackground />
 
       {/* Controls Container (Bottom Right) */ }
       <div className="fixed bottom-8 right-8 z-50 flex flex-col gap-4 items-end">
@@ -302,9 +302,6 @@ export default function App({ posts = [] }: { posts?: BlogPostMeta[] }) {
         <Contact />
 
       </main>
-        </>
-      )
-}
     </div >
     );
 }
