@@ -67,50 +67,55 @@ export const PROJECTS_LIST: Project[] = [
         title: 'Trophy Wall',
         description: 'A full-stack app that pulls your Steam library and achievements via the Steam Web API and renders them as a visual "trophy wall" — playtime bars, per-game completion %, and rarity-based glow. Layered Express + Prisma backend with Redis/BullMQ background sync.',
         tech: ['React', 'TypeScript', 'Tailwind', 'Node.js', 'Express', 'Prisma', 'PostgreSQL', 'Redis', 'BullMQ'],
-        imageUrl: 'https://picsum.photos/600/400?random=11',
+        imageUrl: '/projects/trophy-wall/cover.png',
         githubUrl: 'https://github.com/ArcherEA/TrophyWall',
-        demoUrl: ''
+        demoUrl: 'https://archerea.github.io/TrophyWall/',
+        blogSlug: 'building-trophy-wall'
     },
     {
         id: '2',
         title: 'RSS Reader',
         description: 'A self-hosted, three-pane RSS reader. Supabase (Postgres + Row Level Security + pg_cron) stores feeds and schedules a Deno Edge Function to fetch and parse any RSS/Atom feed every 30 minutes. React + TanStack Query frontend in a pnpm monorepo, ready for a future Electron app.',
         tech: ['React', 'TypeScript', 'Vite', 'Tailwind', 'TanStack Query', 'Supabase', 'PostgreSQL', 'Deno'],
-        imageUrl: 'https://picsum.photos/600/400?random=12',
+        imageUrl: '/projects/rss-reader/cover.png',
         githubUrl: 'https://github.com/ArcherEA/RSS',
-        demoUrl: ''
+        demoUrl: '',
+        blogSlug: 'building-an-rss-reader'
     },
     {
         id: '3',
         title: 'portfolio website',
         description: 'This anime/RPG-themed portfolio — Next.js 16, scroll-snap sections, a file-based Markdown blog, and an AI character assistant powered by Gemini.',
         tech: ['React', 'Next.js', 'Tailwind'],
-        imageUrl: 'https://picsum.photos/600/400?random=1',
+        imageUrl: '/projects/portfolio/cover.png',
         githubUrl: 'https://github.com/ArcherEA',
-        demoUrl: ''
+        demoUrl: '',
+        blogSlug: 'building-this-portfolio'
     },
     {
         id: '4',
         title: 'Tower defense game',
         description: 'A tower defense game using Unity.',
         tech: ['Unity3d', 'C#'],
-        imageUrl: 'https://picsum.photos/600/400?random=2',
-        githubUrl: ''
+        imageUrl: '/projects/tower-defense/cover.png',
+        githubUrl: 'https://github.com/ArcherEA/tower-defense',
+        blogSlug: 'building-tower-defense'
     },
     {
         id: '5',
         title: '3D wizard chess game',
         description: 'A 3D chess game using Unity.',
         tech: ['Unity3d', 'C#'],
-        imageUrl: 'https://picsum.photos/600/400?random=3',
-        githubUrl: ''
+        imageUrl: '/projects/3d-wizard-chess/cover.png',
+        githubUrl: 'https://github.com/ArcherEA/minimax_chess',
+        blogSlug: 'building-minimax-chess'
     },
     {
         id: '6',
         title: 'backend management system',
         description: 'A backend management system for Panda communication corp.',
         tech: ['React.js', 'Vue.js'],
-        imageUrl: 'https://picsum.photos/600/400?random=4',
+        imageUrl: '/projects/classified.svg',
         githubUrl: ''
     },
     {
@@ -118,7 +123,7 @@ export const PROJECTS_LIST: Project[] = [
         title: 'Mobile reading app',
         description: 'An iOS app for reading books.',
         tech: ['Objective-C', 'Swift'],
-        imageUrl: 'https://picsum.photos/600/400?random=5',
+        imageUrl: '/projects/classified.svg',
         githubUrl: ''
     }
 ];

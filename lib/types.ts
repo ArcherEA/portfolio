@@ -7,6 +7,7 @@ export interface Project {
   imageUrl: string;
   demoUrl?: string;
   githubUrl?: string;
+  blogSlug?: string; // slug of the matching post in content/blog/*.md
 }
 
 export interface Stat {
