@@ -5,6 +5,7 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { ArrowLeft, Clock, Tag } from 'lucide-react';
 import { getAllPosts, getPostBySlug } from '@/lib/blog';
+import ThemeToggle from '@/components/ThemeToggle';
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -49,8 +50,11 @@ export default async function BlogPostPage({ params }: PageProps) {
             <ArrowLeft size={20} />
             ALL_LOGS
           </Link>
-          <div className="font-display text-xl bg-gradient-to-r from-pink-600 to-cyan-600 dark:from-pink-500 dark:to-cyan-400 bg-clip-text text-transparent">
-            DATA LOG
+          <div className="flex items-center gap-3">
+            <div className="font-display text-xl bg-gradient-to-r from-pink-600 to-cyan-600 dark:from-pink-500 dark:to-cyan-400 bg-clip-text text-transparent">
+              DATA LOG
+            </div>
+            <ThemeToggle />
           </div>
         </div>
       </header>
