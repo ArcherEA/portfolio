@@ -84,7 +84,7 @@ export const ChatAssistant: React.FC = () => {
             <h3 className="font-display text-2xl text-white tracking-wide drop-shadow-md">AI ASSISTANT AIKO</h3>
             <div className="flex items-center gap-2 text-xs text-purple-200 font-mono">
               <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse shadow-[0_0_5px_#4ade80]"></span>
-              ONLINE // GEMINI-2.5-FLASH
+              ONLINE // GEMINI-3.6-FLASH
             </div>
           </div>
         </div>
