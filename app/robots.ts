@@ -1,6 +1,6 @@
 import type { MetadataRoute } from 'next';
 
-const BASE_URL = 'https://portfolio-web-gamma.vercel.app';
+const BASE_URL = 'https://yukuan.dpdns.org';
 
 export default function robots(): MetadataRoute.Robots {
   return {
