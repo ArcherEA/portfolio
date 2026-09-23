@@ -3,7 +3,6 @@ import React, { useState, useEffect, useRef, useLayoutEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { NAV_LINKS, SKILLS } from '@/lib/constants';
 import type { BlogPostMeta } from '@/lib/types';
-import LoadingScreen from '@/components/LoadingScreen';
 import {
   ArrowUp, Sun, Moon,
   Menu, X
@@ -39,24 +38,14 @@ export default function App({ posts = [] }: { posts?: BlogPostMeta[] }) {
   const mainRef = useRef<HTMLDivElement>(null);
   const [activeSection, setActiveSection] = useState('home');
   const [showScrollTop, setShowScrollTop] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [theme, setTheme] = useState<'dark' | 'light'>('dark');
 
-  // Use layout effect to check storage before paint to prevent loading flash
+  // Initialize theme state from storage before paint (drives the toggle icon;
+  // the `dark` class itself is applied by the pre-paint script in the layout).
   useLayoutEffect(() => {
     const savedTheme = localStorage.getItem('theme') as 'dark' | 'light' | null;
-    if (savedTheme) {
-      setTheme(savedTheme);
-    } else {
-      setTheme('dark');
-    }
-
-    // Check session storage to see if intro has already been shown in this session
-    const introShown = sessionStorage.getItem('intro_shown');
-    if (introShown) {
-      setIsLoading(false);
-    }
+    setTheme(savedTheme ?? 'dark');
   }, []);
 
   useEffect(() => {
@@ -70,9 +59,9 @@ export default function App({ posts = [] }: { posts?: BlogPostMeta[] }) {
     }
   }, [theme]);
 
-    // Restore scroll position logic
+    // Restore scroll position logic (on mount)
   useEffect(() => {
-    if (!isLoading && mainRef.current) {
+    if (mainRef.current) {
       // 1. Check for URL hash first
       if (window.location.hash) {
         const id = window.location.hash.substring(1);
@@ -96,7 +85,7 @@ export default function App({ posts = [] }: { posts?: BlogPostMeta[] }) {
       // 3. Default to top if nothing else
       mainRef.current.scrollTo({ top: 0, behavior: 'instant' });
     }
-  }, [isLoading]);
+  }, []);
 
 
   const toggleTheme = () => {
@@ -133,7 +122,7 @@ export default function App({ posts = [] }: { posts?: BlogPostMeta[] }) {
 
     container.addEventListener('scroll', handleScroll);
     return () => container.removeEventListener('scroll', handleScroll);
-  }, [isLoading]);
+  }, []);
 
   const scrollToTop = () => {
     mainRef.current?.scrollTo({ top: 0, behavior: 'smooth' });
@@ -159,13 +148,6 @@ export default function App({ posts = [] }: { posts?: BlogPostMeta[] }) {
 
   return (
     <div className="h-full w-full bg-slate-50 dark:bg-[#1a1a2e] text-slate-900 dark:text-white selection:bg-pink-500 selection:text-white relative overflow-hidden transition-colors duration-300">
-      {isLoading && <LoadingScreen onComplete={() => {
-        setIsLoading(false);
-        sessionStorage.setItem('intro_shown', 'true');
-      }} />}
-
-      {/* Content is always rendered (so it's in the server HTML for SEO);
-          the LoadingScreen above sits on top as a fixed overlay during the intro. */}
       <AmbientBackground />
 
       {/* Controls Container (Bottom Right) */ }
