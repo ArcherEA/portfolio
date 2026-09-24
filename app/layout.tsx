@@ -27,7 +27,7 @@ const bangers = Bangers({
 
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://portfolio-web-gamma.vercel.app'),
+  metadataBase: new URL('https://yukuan.dpdns.org'),
   title: 'Yukuan Hao | Full Stack Developer & Creative Technologist',
   description: 'Portfolio of ' + PERSONAL_INFO.name + ', a Full Stack Developer specializing in React, Next.js, and modern web technologies. Explore my projects, skills, and creative works.',
   keywords: ['Full Stack Developer', 'React', 'Next.js', 'Portfolio', PERSONAL_INFO.name, 'Web Development', 'Creative Technologist', 'Frontend', 'Backend'],
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: PERSONAL_INFO.name + ' | Full Stack Developer',
     description: 'Portfolio of ' + PERSONAL_INFO.name + ', a Full Stack Developer specializing in React, Next.js, and modern web technologies.',
-    url: 'https://portfolio-web-gamma.vercel.app',
+    url: 'https://yukuan.dpdns.org',
     siteName: PERSONAL_INFO.name + ' Portfolio',
     // og:image is provided by app/opengraph-image.tsx (generated 1200x630 card)
     locale: 'en_US',
